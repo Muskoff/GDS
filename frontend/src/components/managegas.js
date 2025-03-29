@@ -11,7 +11,7 @@ const GasStations = () => {
 
     const fetchGasStations = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/gasdetails");
+            const response = await fetch("http://100.119.117.121:5000/api/gasdetails");
             const data = await response.json();
 
             if (!response.ok) {

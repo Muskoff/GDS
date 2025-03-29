@@ -14,7 +14,7 @@ const OrderEarnings = () => {
             setError(null);
             setNoData(false);
             try {
-                const response = await fetch("http://100.119.117.121:5000/api/earnings");
+                const response = await fetch("http://localhost:5000/api/earnings");
                 const data = await response.json();
                 if (response.ok) {
                     if (data.earnings.length === 0) {

@@ -13,7 +13,7 @@ const RiderOrders = () => {
     // Fetch pending orders from backend
     const fetchOrders = async () => {
         try {
-            const res = await axios.get("http://100.119.117.121:5000/api/vieworders");
+            const res = await axios.get("http://localhost:5000/api/vieworders");
             setOrders(res.data);
         } catch (err) {
             setError("Error fetching orders.");

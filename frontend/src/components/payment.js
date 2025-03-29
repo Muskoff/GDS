@@ -21,7 +21,7 @@ const CheckoutForm = ({ order_id, amount_paid }) => {
         if (!stripe || !elements) return;
 
         try {
-            const { data } = await axios.post("http://100.119.117.121:5000/api/payment-intent", {
+            const { data } = await axios.post("http://localhost:5000/api/payment-intent", {
                 order_id,
                 amount: amount_paid,
             });
@@ -81,7 +81,7 @@ const PaymentForm = () => {
         setResponse(null);
 
         try {
-            const res = await axios.post("http://100.119.117.121:5000/api/payment", formData);
+            const res = await axios.post("http://localhost:5000/api/payment", formData);
             setResponse(res.data);
         } catch (err) {
             setError(err.response?.data?.message || "An error occurred.");

@@ -24,7 +24,7 @@ const UserAvailability = () => {
     setMessage("");
     setError("");
     try {
-      const res = await axios.post("http://localhost:5000/api/availables", {
+      const res = await axios.post("http://100.119.117.121:5000/api/availables", {
         user_id: userId,
         new_availability: newAvailability,
       });

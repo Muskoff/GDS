@@ -26,7 +26,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://100.119.117.121:5000/signup", formData);
+            const response = await axios.post("http://localhost:5000/signup", formData);
             const { id, role } = response.data.user;
             alert(`Signup successful! Your User ID is: ${id}`);
             

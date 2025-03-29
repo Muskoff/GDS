@@ -14,7 +14,7 @@ const Login = () => {
         setError("");
 
         try {
-            const response = await axios.post("http://100.119.117.121:5000/login", { email, password });
+            const response = await axios.post("http://localhost:5000/login", { email, password });
 
             if (response.data.message) {
                 alert(response.data.message);

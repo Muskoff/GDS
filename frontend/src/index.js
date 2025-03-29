@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+
+// Import Components
 import Login from './components/login';
 import Signup from './components/signup';
 import Placeorder from './components/placeorder';
@@ -23,37 +26,58 @@ import Getgas from './components/getgas';
 import AdminUsers from './components/adminuser';
 import Availabilty from './components/availability';
 
-const App = () => {
+const pageVariants = {
+  initial: { opacity: 0, y: 50 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  exit: { opacity: 0, y: 50, transition: { duration: 0.4 } },
+};
+
+
+const PageTransition = ({ children }) => (
+  <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit">
+    {children}
+  </motion.div>
+);
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+
   return (
-    <div style={{ width: '100vw', height: '100vh', margin: 0, padding: 0 }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/placeorder" element={<Placeorder />} />
-          <Route path="/customerdashboard" element={<Studentdashboard />} />
-          <Route path="/riderdashboard" element={<Riderdashboard />} />
-          <Route path="/studentdashboard" element={<Studentdashboard />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/riderspage" element={<RidersPage />} />
-          <Route path="/appointmentschedule" element={<Appointmentschedule />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/vieworder" element={<Vieworder />} />
-          <Route path="/viewearnings" element={<Viewearnings />} />
-          <Route path="/managegas" element={<Managegas />} />
-          <Route path="/adminsignup" element={<Adminsignup />} />
-          <Route path="/adminlogin" element={<Adminlogin />} />
-          <Route path="/admindashboard" element={<Admindashboard />} />
-          <Route path="/managegases" element={<ManageGases />} />
-          <Route path="/getgas" element={<Getgas />} />
-          <Route path="/adminuser" element={<AdminUsers />} />
-          <Route path="/availability" element={<Availabilty />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Signup /></PageTransition>} />
+        <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
+        <Route path="/signup" element={<PageTransition><Signup /></PageTransition>} />
+        <Route path="/placeorder" element={<PageTransition><Placeorder /></PageTransition>} />
+        <Route path="/customerdashboard" element={<PageTransition><Studentdashboard /></PageTransition>} />
+        <Route path="/riderdashboard" element={<PageTransition><Riderdashboard /></PageTransition>} />
+        <Route path="/studentdashboard" element={<PageTransition><Studentdashboard /></PageTransition>} />
+        <Route path="/schedule" element={<PageTransition><Schedule /></PageTransition>} />
+        <Route path="/riderspage" element={<PageTransition><RidersPage /></PageTransition>} />
+        <Route path="/appointmentschedule" element={<PageTransition><Appointmentschedule /></PageTransition>} />
+        <Route path="/payment" element={<PageTransition><Payment /></PageTransition>} />
+        <Route path="/vieworder" element={<PageTransition><Vieworder /></PageTransition>} />
+        <Route path="/viewearnings" element={<PageTransition><Viewearnings /></PageTransition>} />
+        <Route path="/managegas" element={<PageTransition><Managegas /></PageTransition>} />
+        <Route path="/adminsignup" element={<PageTransition><Adminsignup /></PageTransition>} />
+        <Route path="/adminlogin" element={<PageTransition><Adminlogin /></PageTransition>} />
+        <Route path="/admindashboard" element={<PageTransition><Admindashboard /></PageTransition>} />
+        <Route path="/managegases" element={<PageTransition><ManageGases /></PageTransition>} />
+        <Route path="/getgas" element={<PageTransition><Getgas /></PageTransition>} />
+        <Route path="/adminuser" element={<PageTransition><AdminUsers /></PageTransition>} />
+        <Route path="/availability" element={<PageTransition><Availabilty /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
   );
 };
+
+const App = () => (
+  <div style={{ width: '100vw', height: '100vh', margin: 0, padding: 0 }}>
+    <Router>
+      <AnimatedRoutes />
+    </Router>
+  </div>
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

@@ -22,7 +22,7 @@ const GasManagement = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get("http://localhost:5000/api/gaslevels");
+            const response = await axios.get("http://100.119.117.121:5000/api/gaslevels");
             setGasData(response.data);
         } catch (error) {
             console.error("Error fetching gas levels:", error);

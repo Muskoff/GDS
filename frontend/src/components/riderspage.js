@@ -20,7 +20,7 @@ const GasPriceForm = () => {
         setResponse(null);
         
         try {
-            const res = await axios.post("http://100.119.117.121:5000/api/gas", formData);
+            const res = await axios.post("http://localhost:5000/api/gas", formData);
             setResponse(res.data);
         } catch (err) {
             setError(err.response?.data?.message || "An error occurred.");
